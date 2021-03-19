@@ -16,7 +16,7 @@ typedef struct Matrix
 //Function declarations. Functions defined and explained below the main.
 void matrixOperation(int operationNumber, Matrix _matrix); 
 void matrixMulti (Matrix _firstMatrix, Matrix _secondMatrix, Matrix _newMatrix);
-int checkedValues(int isDimention);
+int checkedValues(int option);
 
 int main() {
 	int firstMatrixRow, firstMatrixCol, secondMatrixRow, secondMatrixCol;
@@ -164,7 +164,7 @@ int checkedValues(int option) {
         char *endptr;
         errno = 0; // reset error number
         a = strtol(input, &endptr, 10);
-        if (*endptr && *endptr != '\n') {
+        if (*endptr != '\n') {
             // *endptr is neither end of string nor newline,
             // so we didn't convert the *whole* input
             printf("Please enter an integer.\n");
@@ -184,8 +184,7 @@ int checkedValues(int option) {
 		} else if ((option == 2) && !(a == 1 || a == 2)) {
 			printf("Invalid option. Try again.\n");
             success = false;
-		}
-		else {
+		} else {
             success = true;
         }
     } while (!success); // repeat until we got a valid number

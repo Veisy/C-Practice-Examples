@@ -109,7 +109,7 @@ void createArray(NumberArray arr, int option)
 		printf("\n\n------------\n");
 		printf("The Random Array: ");
 		
-	} else if (option = 3) {
+	} else if (option == 3) {
 		//Empty
 	} else {
 		printf("Invalid menu option is passed as an argument.");
@@ -122,7 +122,7 @@ void createArray(NumberArray arr, int option)
 			printf("[%d]: ", i);
 			*(arr.array + i) = checkedValues(0);
 			
-		} else if (option == 2 || option == 3) {
+		} else  {
 			//Create an random array which has a size of arraySize and value range of arrayValueRange. Min value is 1, Max value is arr.max
 			//If value range is equal or qreater than array size, we seek uniqueness. This is a rule that I made up at my own sweet will.
 			do {
@@ -142,9 +142,6 @@ void createArray(NumberArray arr, int option)
 				printf(" %d", *(arr.array + i) );
 			}	
 			
-		} 	else {
-			printf("\nError! Invalid array operation. Check arguments of the function.");
-			exit(EXIT_FAILURE);
 		}
 	} 	
 }
@@ -220,7 +217,7 @@ int checkedValues(int option)
         char *endptr;
         errno = 0; // reset error number
         a = strtol(input, &endptr, 10);
-        if (*endptr && *endptr != '\n') {
+        if (*endptr != '\n') {
             // *endptr is neither end of string nor newline,
             // so we didn't convert the *whole* input
             printf("Please enter an integer.\n");
@@ -238,12 +235,10 @@ int checkedValues(int option)
         } else if (option == 2 && a > MAX_SIZE) {
         	printf("Max size defined as 10000. Please enter an integer smaller than this: ");
             success = false; 
-		} 
-		else if ( (option == 1) && !(a == 1 || a == 2 || a == 3) ) {
+		} else if ( (option == 1) && !(a == 1 || a == 2 || a == 3) ) {
 			printf("Invalid option. Try again.\n");
             success = false;
-		}
-		else {
+		} else {
             success = true;
         }
     } while (!success); // repeat until we got a valid number

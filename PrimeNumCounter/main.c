@@ -3,7 +3,6 @@
 #include <math.h>
 #include <inttypes.h>
 #include <stdbool.h>
-#include <errno.h>
 
 
 uintmax_t checkedValues();
@@ -71,7 +70,7 @@ uintmax_t primeCounter (uintmax_t _numberP)
     for(uintmax_t i=2 ; i<=_numberP; i++)
         if(isPrime[i]){
             count++;
-            printf("%d. Prime Number = %d\n", count, i);
+            printf("%ju. Prime Number = %ju\n", count, i);
     }
     
     //Free the allocated memory.
@@ -93,23 +92,21 @@ uintmax_t checkedValues() {
         char *endptr;
         errno = 0; // reset error number
         a = strtoull(input, &endptr, 10);
-        if (*endptr && *endptr != '\n') {
+
+        if (*endptr != '\n') {
             // *endptr is neither end of string nor newline,
             // so we didn't convert the *whole* input
             printf("Please enter an integer.\n");
             success = false;
-        }
-        else if (endptr == input) {
+        } else if (endptr == input) {
             // no character was read
             printf("Please enter an integer.\n");
             success = false;
-        }
-        else if (a >= UINTMAX_MAX || a <= 0){
+        } else if (a >= UINTMAX_MAX || a <= 0){
         	//Check integer limits
         	printf("Sorry, this number is too small or too large! Please enter an integer.\n");
             success = false;  
-        } 
-		else {
+        } else {
             success = true;
         }
     } while (!success); // repeat until we got a valid number
