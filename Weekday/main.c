@@ -34,13 +34,13 @@ int doomsDayCalculator (int _year, int _anchorDay){
 	return (partD % 7);
 }
 
-//The weekday calculated due to doomsday, year , mounth and day;
-int weekDayCalculator (int _year, int _mounth, int _day, int _doomsDay ) {
+//The weekday calculated due to doomsday, year , _month and day;
+int weekDayCalculator (int _year, int _month, int _day, int _doomsDay ) {
 	
 	int janDay = 3;
 	int febDay = 28;
 
-    switch (_mounth) {
+    switch (_month) {
         case 1:
             //check if it is a leap day or not for Jan and Feb.
             if ( ((_year%4 == 0) && (_year%100 != 0)) || (_year%400 == 0) ) {
